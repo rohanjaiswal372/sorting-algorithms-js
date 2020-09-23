@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Quicksort</h2>
+<p>Array::</p>
+<p id="array"></p>
+<p>Sorted Array::</p>
+<p id="sarray"></p>
+
+<script>
+    var arr=[10,2,5,8,3,6];
+    document.getElementById("array").innerHTML = arr;
+    var l=0, r =arr.length -1;
+
+    function quicksort($arr, l, r, text) {
+        if(l >= r){
+            return
+        };
+
+        let pivot = arr[r];
+
+        let ctr = l;
+        
+        console.log('ctr='+ctr);
+
+        for(let i = l; i < arr.length; i++){
+            if(arr[i]<=pivot){
+                console.log('arr[i]='+arr[i] +', pivot='+pivot + ' :: '+text);
+
+                swap(ctr,i);
+                ctr++;
+            }
+        }
+        quicksort(arr, l, ctr-2, 'lor');
+        quicksort(arr, ctr, r, 'ror');
+
+    }
+
+    function swap(l,r){
+        let temp = arr[l];
+        arr[l]=arr[r];
+        arr[r]=temp;
+
+    }
+
+    quicksort(arr,l,r, 'first');
+    document.getElementById("sarray").innerHTML = arr;
+    
+</script>
+</body>
+</html> 
