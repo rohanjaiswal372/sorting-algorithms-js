@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Insertion Sort</h2>
+<input id="item" type="number">
+<button onclick="addArray()">Click me</button>
+<button onclick="sort()">Sort</button>
+
+<p>Array::</p>
+<p id="array"></p>
+<p>Sorted Array::</p>
+<p id="sarray"></p>
+
+<script>
+    var arr=[9,5,4,3,6,1,9];
+    //[5,9,4 ....]
+
+    document.getElementById("array").innerHTML = arr;
+
+    //initialize array
+    function addArray() {
+        item = document.getElementById('item').value;
+        arr.push(item);  
+        document.getElementById("array").innerHTML = arr;
+        document.getElementById('item').value = '';
+    };
+
+    function sort(){
+        arr = insertionSort(arr);
+        document.getElementById("sarray").innerHTML = arr;
+    };
+
+    function insertionSort(array){
+        for (let i = 1; i < array.length; i++) {
+            let currentElement = array[i];
+            let j = i - 1;
+            while (j >= 0 && array[j] > currentElement) {
+                array[j + 1] = array[j];
+                j = j - 1;
+                console.log(array);
+            }
+            array[j + 1] = currentElement;
+        }
+        return array;
+
+    }
+
+    //sort
+    
+</script>
+</body>
+</html> 
