@@ -3,18 +3,34 @@
 <body>
 
 <h2>Quicksort</h2>
+<input id="item" type="number">
+<button onclick="addArray()">Click me</button>
+<button onclick="sort()">Sort</button>
+
 <p>Array::</p>
 <p id="array"></p>
 <p>Sorted Array::</p>
 <p id="sarray"></p>
 
 <script>
-    var arr=[10,2,5,8,3,6];
-    document.getElementById("array").innerHTML = arr;
-    var l=0, r =arr.length -1;
+    var arr=[];
+
+    function addArray() {
+        item = document.getElementById('item').value;
+        arr.push(item);  
+        console.log(arr);
+        document.getElementById("array").innerHTML = arr;
+        document.getElementById('item').value = '';
+    };
+
+    function sort(){
+        var l=0, r =arr.length -1;
+        quicksort(arr,l,r, 'first');
+        document.getElementById("sarray").innerHTML = arr;
+    };
 
     function quicksort($arr, l, r, text) {
-        if(l >= r){
+        if(l >= r || $arr.length==0){
             return
         };
 
@@ -22,30 +38,32 @@
 
         let ctr = l;
         
-        console.log('ctr='+ctr);
-
         for(let i = l; i < arr.length; i++){
+
             if(arr[i]<=pivot){
-                console.log('arr[i]='+arr[i] +', pivot='+pivot + ' :: '+text);
+                console.log('i: '+i+' center: '+ ctr +' :: ' +text);
 
                 swap(ctr,i);
                 ctr++;
+            }
+            else{
+                console.log('else '+'arr[i]='+arr[i] +', pivot='+pivot + ' center: '+ ctr +' :: ' +text);
+
             }
         }
         quicksort(arr, l, ctr-2, 'lor');
         quicksort(arr, ctr, r, 'ror');
 
-    }
+    };
 
     function swap(l,r){
+        console.log(arr[l],arr[r]);
         let temp = arr[l];
         arr[l]=arr[r];
         arr[r]=temp;
+        console.log(arr);
 
-    }
-
-    quicksort(arr,l,r, 'first');
-    document.getElementById("sarray").innerHTML = arr;
+    };
     
 </script>
 </body>

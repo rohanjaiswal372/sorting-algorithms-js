@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Mergesort</h2>
+<input id="item" type="number">
+<button onclick="addArray()">Click me</button>
+<button onclick="sort()">Sort</button>
+
+<p>Array::</p>
+<p id="array"></p>
+<p>Sorted Array::</p>
+<p id="sarray"></p>
+
+<script>
+    var arr=[9,5,4,3,6,1,9];
+    document.getElementById("array").innerHTML = arr;
+
+    //initialize array
+    function addArray() {
+        item = document.getElementById('item').value;
+        arr.push(item);  
+        document.getElementById("array").innerHTML = arr;
+        document.getElementById('item').value = '';
+    };
+
+    function sort(){
+        //sort
+        arr = mergesort(arr);
+        document.getElementById("sarray").innerHTML = arr;
+    };
+
+    //sort
+    function mergesort(array) {
+        if(array.length <=1) return array;
+        let mid =Math.floor(array.length/2);
+        let left = mergesort(array.slice(0,mid));
+        let right = mergesort(array.slice(mid));
+        return merge(left,right);
+    };
+
+
+    function merge(array1, array2) {
+        let result =[];
+        let i=0;
+        let j =0;
+
+        while(i< array1.length && j < array2.length){
+            if(array2[j] > array1[i]){
+                result.push(array1[i]);
+                i++;
+            }
+            else{
+                result.push(array2[j]);
+                j++;
+            }
+        }
+
+        while(i<array1.length){
+            result.push(array1[i]);
+            i++;
+        }
+
+        while(j<array2.length){
+            result.push(array2[j]);
+            j++;
+        }
+        return result;
+    };
+    
+</script>
+</body>
+</html> 
